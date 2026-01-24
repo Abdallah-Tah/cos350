@@ -1,5 +1,8 @@
 Name: Abdallah Mohamed
+Course: COS 350
 Experiment 2 - Recursive C Function
+Date: January 24, 2026
+
 
 1) Write and test a recursive C function (not main) that endlessly calls itself.
 
@@ -15,7 +18,7 @@ So the function called itself about 174,230 times before it failed.
 
 3) What error message do you get when it fails?
 
-The program crashed because the stack became full.
+The program crashed because of the stack.
 The error message was:
 
 segmentation fault
