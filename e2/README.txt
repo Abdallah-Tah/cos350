@@ -4,19 +4,14 @@ Experiment 2 - Recursive C Function
 Date: January 24, 2026
 
 
-1) Write and test a recursive C function (not main) that endlessly calls itself.
-
-I wrote a function called recursive(int n).  
-This function calls itself again using recursive(n + 1).  
-
-2) How many times can it call itself?
+1) How many times can it call itself?
 
 On my mac, the program printed up to:
 n = 174230
 
 So the function called itself about 174,230 times before it failed.
 
-3) What error message do you get when it fails?
+2) What error message do you get when it fails?
 
 The program crashed because of the stack.
 The error message was:

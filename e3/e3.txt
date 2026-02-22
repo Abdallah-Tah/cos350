@@ -1,0 +1,7 @@
+Experiment 3 – Arrays
+
+I compiled and ran array.c with NUM = 7. It printed “old values” that were garbage (uninitialized memory) and then printed zeros after initializing the array.
+
+I changed NUM to 8 and recompiled. The program printed values for a[0] through a[7], but then it failed with an “abort”. The first NUM where it failed was 8.
+
+This happens because the array is declared as int a[7], so valid indexes are 0..6. With NUM = 8, the loop accesses a[7], which is past the end of the array. C does not check array bounds, so the program writes into memory on the stack that belongs to something else. Sometimes this still appears to work, but eventually it corrupts important data (or is detected by protections) and the program aborts/crashes.
