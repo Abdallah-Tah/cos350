@@ -1,0 +1,44 @@
+Script started on 2026-02-27 16:34:48-05:00 [TERM="xterm-256color" TTY="/dev/pts/22" COLUMNS="241" LINES="63"]
+bash: export: `:/usr/local/cuda-12.2/lib64': not a valid identifier
+^[[?2004h^[]0;abdallah.mohamed@ant: ~/projects/program2^G^[[01;32mabdallah.mohamed@ant^[[00m:^[[01;34m~/projects/program2^[[00m$ exit^H^H^H^Hcmp shake.txt shake.orig^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^[[1Pp short.txt short.orig^H>
+^[[?2004l^M^[[?2004h^[]0;abdallah.mohamed@ant: ~/projects/program2^G^[[01;32mabdallah.mohamed@ant^[[00m:^[[01;34m~/projects/program2^[[00m$ cp short.txt short.orig^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^Hexit^[[K^H^H^H^Hcmp shake.txt s>
+^[[?2004l^M^[[?2004h^[]0;abdallah.mohamed@ant: ~/projects/program2^G^[[01;32mabdallah.mohamed@ant^[[00m:^[[01;34m~/projects/program2^[[00m$ z827 =^H^[[Ksho^Grt.txt
+^[[?2004l^M^[[?2004h^[]0;abdallah.mohamed@ant: ~/projects/program2^G^[[01;32mabdallah.mohamed@ant^[[00m:^[[01;34m~/projects/program2^[[00m$ z827 short.txt ^H^H^H^H^H^[[C^[[C^[[C^[[C^H^[[1P ^H^H^[[1P ^H^H^[[1P ^H^H^[[1P ^H^H^[[1P ^H^H^[[1P ^>
+^[[?2004l^M^[[?2004h^[]0;abdallah.mohamed@ant: ~/projects/program2^G^[[01;32mabdallah.mohamed@ant^[[00m:^[[01;34m~/projects/program2^[[00m$ ls -l
+^[[?2004l^Mtotal 9824
+-rw-rw---- 1 abdallah.mohamed abdallah.mohamed       0 Feb 27 16:34 RESULTS.txt
+-rw-r----- 1 abdallah.mohamed abdallah.mohamed 5344213 Feb 27 16:35 ^[[0m^[[00;90mshake.orig^[[0m
+-rw-r----- 1 abdallah.mohamed abdallah.mohamed 4676191 Feb 27 16:35 shake.txt.z827
+-rw-r----- 1 abdallah.mohamed abdallah.mohamed      67 Feb 27 16:35 ^[[00;90mshort.orig^[[0m
+-rw-r----- 1 abdallah.mohamed abdallah.mohamed      63 Feb 27 16:35 short.txt.z827
+-rwxrwx--x 1 abdallah.mohamed abdallah.mohamed   16760 Feb 27 16:17 ^[[01;32mz827^[[0m
+-rw-rw---- 1 abdallah.mohamed abdallah.mohamed    7043 Feb 27 16:15 z827.c
+^[[?2004h^[]0;abdallah.mohamed@ant: ~/projects/program2^G^[[01;32mabdallah.mohamed@ant^[[00m:^[[01;34m~/projects/program2^[[00m$ ^[[7mod –t x1 short.txt.z827^[[27m^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^Hod –t x1 short.txt.z827^H^H^H^H>
+^[[?2004l^M0000000 43 00 00 00 41 d0 3c dd 86 b3 cb 20 7a 19 4f 07
+0000020 99 d3 ec 32 88 fe 06 89 cb a0 fa bc 4c 06 a5 dd
+0000040 20 7a 79 4e 4f bb cf a0 77 9d 0e a2 a3 cb 20 3d
+0000060 4e 76 03 8d df 6d b8 bc 3c 9f a7 df 6e 97 02
+0000077
+^[[?2004h^[]0;abdallah.mohamed@ant: ~/projects/program2^G^[[01;32mabdallah.mohamed@ant^[[00m:^[[01;34m~/projects/program2^[[00m$ ^[[7mz827 short.txt.z827^[[27m^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^Hz827 short.txt.z827
+^[[?2004l^M^[[?2004h^[]0;abdallah.mohamed@ant: ~/projects/program2^G^[[01;32mabdallah.mohamed@ant^[[00m:^[[01;34m~/projects/program2^[[00m$ ^[[7mz827 shake.txt.z827^[[27m^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^Hz827 shake.txt.z827
+^[[?2004l^M^[[?2004h^[]0;abdallah.mohamed@ant: ~/projects/program2^G^[[01;32mabdallah.mohamed@ant^[[00m:^[[01;34m~/projects/program2^[[00m$ ls -l
+^[[?2004l^Mtotal 10476
+-rw-rw---- 1 abdallah.mohamed abdallah.mohamed       0 Feb 27 16:34 RESULTS.txt
+-rw-r----- 1 abdallah.mohamed abdallah.mohamed 5344213 Feb 27 16:35 ^[[0m^[[00;90mshake.orig^[[0m
+-rw-r----- 1 abdallah.mohamed abdallah.mohamed 5344213 Feb 27 16:39 shake.txt
+-rw-r----- 1 abdallah.mohamed abdallah.mohamed      67 Feb 27 16:35 ^[[00;90mshort.orig^[[0m
+-rw-r----- 1 abdallah.mohamed abdallah.mohamed      67 Feb 27 16:38 short.txt
+-rwxrwx--x 1 abdallah.mohamed abdallah.mohamed   16760 Feb 27 16:17 ^[[01;32mz827^[[0m
+-rw-rw---- 1 abdallah.mohamed abdallah.mohamed    7043 Feb 27 16:15 z827.c
+^[[?2004h^[]0;abdallah.mohamed@ant: ~/projects/program2^G^[[01;32mabdallah.mohamed@ant^[[00m:^[[01;34m~/projects/program2^[[00m$ ^[[7mcmp short.txt short.orig^[[27m^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^Hcmp short.txt short.orig
+^[[?2004l^M^[[?2004h^[]0;abdallah.mohamed@ant: ~/projects/program2^G^[[01;32mabdallah.mohamed@ant^[[00m:^[[01;34m~/projects/program2^[[00m$ ^[[7mcmp shake.txt shake.orig^[[27m
+^M^[[A^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[Ccmp shake.txt shake.orig
+^M^[[K^[[A^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[[C^[>
+^[[?2004l^M^[[?2004h^[]0;abdallah.mohamed@ant: ~/projects/program2^G^[[01;32mabdallah.mohamed@ant^[[00m:^[[01;34m~/projects/program2^[[00m$ ^[[7mz827 badfilename^[[27m^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^Hz827 badfilename
+^[[?2004l^Mopen input: No such file or directory
+^[[?2004h^[]0;abdallah.mohamed@ant: ~/projects/program2^G^[[01;32mabdallah.mohamed@ant^[[00m:^[[01;34m~/projects/program2^[[00m$ ^[[7mz827^[[27m^G^H^H^H^Hz827
+^[[?2004l^MUsage: z827 <file>
+^[[?2004h^[]0;abdallah.mohamed@ant: ~/projects/program2^G^[[01;32mabdallah.mohamed@ant^[[00m:^[[01;34m~/projects/program2^[[00m$ exit
+^[[?2004l^Mexit
+
+Script done on 2026-02-27 16:41:11-05:00 [COMMAND_EXIT_CODE="1"]

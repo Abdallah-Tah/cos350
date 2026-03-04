@@ -1,0 +1,27 @@
+z827 Compression Self-evaluation
+
+Name:
+
+Manual Page (20pts):
+	_ works  _ mostly works _ sometimes works _ not implemented
+
+Reading the input file using read() (5pts):
+	_ works  _ mostly works _ sometimes works _ not implemented
+
+Creating the correctly named output file (5pts):
+	_ works  _ mostly works _ sometimes works _ not implemented
+
+Correctly compressing data (30pts):
+	_ works  _ mostly works _ sometimes works _ not implemented
+
+Correct file size at the start of the file (5pts):
+	_ works  _ mostly works _ sometimes works _ not implemented
+
+Removing old file after processing (5pts):
+	_ works  _ mostly works _ sometimes works _ not implemented
+
+Decompression (20pts):
+	_ works  _ mostly works _ sometimes works _ not implemented
+
+Error Handling (10pts):
+	_ works  _ mostly works _ sometimes works _ not implemented

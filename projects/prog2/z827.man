@@ -1,0 +1,57 @@
+Z827(1)                          User Commands                         Z827(1)
+
+NAME
+       z827 - compress and decompress files
+
+SYNOPSIS
+       z827 FILE
+
+DESCRIPTION
+       z827 makes files smaller by packing 7-bit ASCII into 8-bit bytes.
+       This saves about 12.5% space.
+
+       If you give it a regular file, it compresses it and adds .z827 to
+       the name. If you give it a .z827 file, it decompresses it and
+       removes .z827 from the name.
+
+       The original file is deleted after the new file is created.
+
+HOW IT WORKS
+       Normal ASCII uses only 7 bits per character. The 8th bit is always
+       zero. z827 removes these zero bits to save space.
+
+       Example: 8 characters = 8 bytes normally. After compression = 7 bytes.
+
+       The compressed file has a 4-byte header with the original file size.
+
+EXAMPLES
+       Compress a file:
+              z827 file.txt
+              Creates file.txt.z827 and deletes file.txt
+
+       Decompress a file:
+              z827 file.txt.z827
+              Creates file.txt and deletes file.txt.z827
+
+EXIT STATUS
+       0      Success
+       1      Error
+
+ERRORS
+       z827 fails if:
+       - File does not exist
+
+NOTES
+       Only works for 7-bit ASCII files. Does not work for binary files or
+       files with special characters.
+
+       The original file is deleted only after the new file is successfully
+       created and closed.
+
+AUTHOR
+       Written by Abdallah Mohamed for COS 350.
+
+SEE ALSO
+       gzip(1), compress(1)
+
+February 2026                    Version 1.0                          Z827(1)
