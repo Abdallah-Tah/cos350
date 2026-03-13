@@ -39,6 +39,7 @@ struct file_entry
     unsigned int options;
 };
 
+// Check if a file or directory exists
 int file_exists(const char *name);
 int get_archive_name(char *archive_name, size_t size, int argc, char *argv[]);
 void add_z_extension(char *name, size_t size);
@@ -54,11 +55,13 @@ int add_one_file(FILE *archive_fp, const char *file_name, int use_compression);
 void show_archive_contents(const char *archive_name);
 int extract_archive(const char *archive_name, const char *extract_dir);
 void make_output_path(char *out, size_t size, const char *dir, const char *file_name);
+// Check if the file name is safe
 int safe_file_name(const char *name);
 int is_compressible(const unsigned char *data, size_t size);
 unsigned char *z827_compress(const unsigned char *input, size_t input_size, size_t *output_size);
 unsigned char *z827_decompress(const unsigned char *input, size_t input_size, size_t *output_size);
 
+// Main function
 int main(int argc, char *argv[])
 {
     char archive_name[MAX_NAME];
@@ -102,12 +105,14 @@ int main(int argc, char *argv[])
     return 1;
 }
 
+// Check if a file or directory exists
 int file_exists(const char *name)
 {
     struct stat info;
     return stat(name, &info) == 0;
 }
 
+// Check if the file name is safe
 int safe_file_name(const char *name)
 {
     int i;
@@ -127,7 +132,7 @@ int safe_file_name(const char *name)
     return 1;
 }
 
-/* z827 compression - check if file is compressible (all bytes < 0x80) */
+// Check if the file can be compressed
 int is_compressible(const unsigned char *data, size_t size)
 {
     size_t i;
@@ -139,7 +144,7 @@ int is_compressible(const unsigned char *data, size_t size)
     return 1;
 }
 
-/* z827 compress - pack 7 bits at a time */
+// Compress with z827
 unsigned char *z827_compress(const unsigned char *input, size_t input_size, size_t *output_size)
 {
     unsigned char *output;
@@ -149,19 +154,19 @@ unsigned char *z827_compress(const unsigned char *input, size_t input_size, size
     size_t out_pos = 0;
     size_t max_out;
 
-    /* 4 byte header + compressed data */
+    // Calculate max output size
     max_out = 4 + ((input_size * 7 + 7) / 8) + 1;
     output = (unsigned char *)malloc(max_out);
     if (!output)
         return NULL;
 
-    /* write 4-byte header with original size */
+    // Write 4-byte header
     output[out_pos++] = (unsigned char)(input_size & 0xFF);
     output[out_pos++] = (unsigned char)((input_size >> 8) & 0xFF);
     output[out_pos++] = (unsigned char)((input_size >> 16) & 0xFF);
     output[out_pos++] = (unsigned char)((input_size >> 24) & 0xFF);
 
-    /* pack 7 bits at a time */
+    // Pack 7 bits at a time
     while (in_pos < input_size)
     {
         bitbuf |= ((unsigned int)(input[in_pos] & 0x7F)) << bitcount;
@@ -176,7 +181,7 @@ unsigned char *z827_compress(const unsigned char *input, size_t input_size, size
         }
     }
 
-    /* write remaining bits */
+    // Write remaining bits
     if (bitcount > 0)
         output[out_pos++] = (unsigned char)(bitbuf & 0xFF);
 
@@ -184,7 +189,7 @@ unsigned char *z827_compress(const unsigned char *input, size_t input_size, size
     return output;
 }
 
-/* z827 decompress - extract 7-bit chars from 8-bit bytes */
+// Decompress with z827
 unsigned char *z827_decompress(const unsigned char *input, size_t input_size, size_t *output_size)
 {
     unsigned char *output;
@@ -197,17 +202,18 @@ unsigned char *z827_decompress(const unsigned char *input, size_t input_size, si
     if (input_size < 4)
         return NULL;
 
-    /* read 4-byte header */
-    original_size = ((unsigned int)input[in_pos++]) |
-                    ((unsigned int)input[in_pos++] << 8) |
-                    ((unsigned int)input[in_pos++] << 16) |
-                    ((unsigned int)input[in_pos++] << 24);
+    // Read 4-byte header
+    original_size = ((unsigned int)input[0]) |
+                    ((unsigned int)input[1] << 8) |
+                    ((unsigned int)input[2] << 16) |
+                    ((unsigned int)input[3] << 24);
+    in_pos = 4;
 
     output = (unsigned char *)malloc(original_size);
     if (!output)
         return NULL;
 
-    /* extract 7 bits at a time */
+    // Unpack 7 bits at a time
     while (out_pos < original_size && in_pos < input_size)
     {
         bitbuf |= ((unsigned int)input[in_pos++]) << bitcount;
@@ -225,6 +231,7 @@ unsigned char *z827_decompress(const unsigned char *input, size_t input_size, si
     return output;
 }
 
+// Get archive name from command line or input
 int get_archive_name(char *archive_name, size_t size, int argc, char *argv[])
 {
     if (argc >= 3)
@@ -255,6 +262,7 @@ int get_archive_name(char *archive_name, size_t size, int argc, char *argv[])
     return 0;
 }
 
+// Add .z extension if it is missing
 void add_z_extension(char *name, size_t size)
 {
     size_t len = strlen(name);
@@ -266,6 +274,7 @@ void add_z_extension(char *name, size_t size)
         strcat(name, ".z");
 }
 
+// Get current user id and owner name
 void get_user_name(unsigned int *uid, char *owner)
 {
     struct passwd *pw;
@@ -283,6 +292,7 @@ void get_user_name(unsigned int *uid, char *owner)
     owner[MAX_OWNER - 1] = '\0';
 }
 
+// File filter for scandir
 int file_filter(const struct dirent *entry)
 {
     struct stat info;
@@ -299,11 +309,13 @@ int file_filter(const struct dirent *entry)
     return 0;
 }
 
+// Compare file names
 int file_compare(const struct dirent **a, const struct dirent **b)
 {
     return strcmp((*a)->d_name, (*b)->d_name);
 }
 
+// Format modification time for display
 void format_time_string(time_t t, char *buffer, size_t size)
 {
     struct tm *tm_info;
@@ -319,6 +331,7 @@ void format_time_string(time_t t, char *buffer, size_t size)
     strftime(buffer, size, "%b %d %H:%M", tm_info);
 }
 
+// Show regular files in the current directory
 int show_current_files(void)
 {
     struct dirent **list;
@@ -355,6 +368,7 @@ int show_current_files(void)
     return count;
 }
 
+// Get all regular files except the archive itself
 int get_all_files(char files[][MAX_NAME], int max_files, const char *skip_name)
 {
     struct dirent **list;
@@ -390,6 +404,7 @@ int get_all_files(char files[][MAX_NAME], int max_files, const char *skip_name)
     return used;
 }
 
+// Read selected file names from the user
 int get_selected_files(char files[][MAX_NAME], int max_files, const char *skip_name)
 {
     char input[MAX_LINE];
@@ -454,7 +469,6 @@ int add_one_file(FILE *archive_fp, const char *file_name, int use_compression)
     unsigned char *compressed_data = NULL;
     size_t compressed_size = 0;
     size_t bytes_read;
-    long header_pos;
 
     if (stat(file_name, &info) != 0)
     {
@@ -483,7 +497,7 @@ int add_one_file(FILE *archive_fp, const char *file_name, int use_compression)
 
     entry.options = 0;
 
-    /* try compression if requested */
+    // Try compression
     if (use_compression && entry.size > 0)
     {
         file_data = (unsigned char *)malloc(entry.size);
@@ -508,9 +522,6 @@ int add_one_file(FILE *archive_fp, const char *file_name, int use_compression)
         }
     }
 
-    /* save position to update header later if needed */
-    header_pos = ftell(archive_fp);
-
     if (fwrite(&entry, sizeof(entry), 1, archive_fp) != 1)
     {
         fprintf(stderr, "Error: could not write header for %s\n", file_name);
@@ -522,7 +533,7 @@ int add_one_file(FILE *archive_fp, const char *file_name, int use_compression)
         return 0;
     }
 
-    /* write compressed or original data */
+    // Write compressed or original data
     if (compressed_data != NULL)
     {
         if (fwrite(compressed_data, 1, compressed_size, archive_fp) != compressed_size)
@@ -562,6 +573,7 @@ int add_one_file(FILE *archive_fp, const char *file_name, int use_compression)
     return 1;
 }
 
+// Create archive and add files
 int create_archive(const char *archive_name, int use_compression)
 {
     FILE *archive_fp;
@@ -571,9 +583,6 @@ int create_archive(const char *archive_name, int use_compression)
     int file_count;
     int i;
     unsigned int archived = 0;
-
-    if (use_compression)
-        printf("Compression flag requested but not implemented.\n");
 
     if (file_exists(archive_name))
     {
@@ -608,7 +617,12 @@ int create_archive(const char *archive_name, int use_compression)
         return 1;
     }
 
-    fwrite(&archive_header, sizeof(archive_header), 1, archive_fp);
+    if (fwrite(&archive_header, sizeof(archive_header), 1, archive_fp) != 1)
+    {
+        fprintf(stderr, "Error: could not write archive header\n");
+        fclose(archive_fp);
+        return 1;
+    }
 
     for (i = 0; i < file_count; i++)
         if (add_one_file(archive_fp, files[i], use_compression))
@@ -617,7 +631,12 @@ int create_archive(const char *archive_name, int use_compression)
     archive_header.n_files = archived;
 
     fseek(archive_fp, 0, SEEK_SET);
-    fwrite(&archive_header, sizeof(archive_header), 1, archive_fp);
+    if (fwrite(&archive_header, sizeof(archive_header), 1, archive_fp) != 1)
+    {
+        fprintf(stderr, "Error: could not update archive header\n");
+        fclose(archive_fp);
+        return 1;
+    }
 
     fclose(archive_fp);
 
@@ -645,7 +664,12 @@ void show_archive_contents(const char *archive_name)
         return;
     }
 
-    fread(&archive_header, sizeof(archive_header), 1, archive_fp);
+    if (fread(&archive_header, sizeof(archive_header), 1, archive_fp) != 1)
+    {
+        fprintf(stderr, "Error: could not read archive header\n");
+        fclose(archive_fp);
+        return;
+    }
 
     printf("\nArchive contents:\n");
     printf("Owner: %s\n", archive_header.owner);
@@ -655,7 +679,12 @@ void show_archive_contents(const char *archive_name)
     for (i = 0; i < archive_header.n_files; i++)
     {
 
-        fread(&entry, sizeof(entry), 1, archive_fp);
+        if (fread(&entry, sizeof(entry), 1, archive_fp) != 1)
+        {
+            fprintf(stderr, "Error: could not read file entry\n");
+            fclose(archive_fp);
+            return;
+        }
 
         format_time_string(entry.timestamp, time_string, sizeof(time_string));
 
@@ -670,6 +699,7 @@ void show_archive_contents(const char *archive_name)
     fclose(archive_fp);
 }
 
+// Build output path for extracted file
 void make_output_path(char *out, size_t size, const char *dir, const char *file_name)
 {
     if (dir == NULL)
@@ -678,6 +708,7 @@ void make_output_path(char *out, size_t size, const char *dir, const char *file_
         snprintf(out, size, "%s/%s", dir, file_name);
 }
 
+// Extract all files from the archive
 int extract_archive(const char *archive_name, const char *extract_dir)
 {
     FILE *archive_fp;
@@ -726,7 +757,12 @@ int extract_archive(const char *archive_name, const char *extract_dir)
         return 1;
     }
 
-    fread(&archive_header, sizeof(archive_header), 1, archive_fp);
+    if (fread(&archive_header, sizeof(archive_header), 1, archive_fp) != 1)
+    {
+        fprintf(stderr, "Error: could not read archive header\n");
+        fclose(archive_fp);
+        return 1;
+    }
 
     printf("Archive owner: %s\n", archive_header.owner);
     printf("Extracting %u file(s)\n", archive_header.n_files);
@@ -734,7 +770,12 @@ int extract_archive(const char *archive_name, const char *extract_dir)
     for (i = 0; i < archive_header.n_files; i++)
     {
 
-        fread(&entry, sizeof(entry), 1, archive_fp);
+        if (fread(&entry, sizeof(entry), 1, archive_fp) != 1)
+        {
+            fprintf(stderr, "Error: could not read file entry\n");
+            fclose(archive_fp);
+            return 1;
+        }
 
         make_output_path(out_path, sizeof(out_path), extract_dir, entry.file_name);
 
@@ -754,7 +795,7 @@ int extract_archive(const char *archive_name, const char *extract_dir)
             return 1;
         }
 
-        /* check if file is compressed */
+        // Check if file is compressed
         if (entry.options & 1)
         {
             unsigned char *compressed_data;
@@ -791,7 +832,14 @@ int extract_archive(const char *archive_name, const char *extract_dir)
                 return 1;
             }
 
-            fwrite(decompressed_data, 1, decompressed_size, outfile);
+            if (fwrite(decompressed_data, 1, decompressed_size, outfile) != decompressed_size)
+            {
+                fprintf(stderr, "Error: could not write decompressed data for %s\n", out_path);
+                free(decompressed_data);
+                fclose(outfile);
+                fclose(archive_fp);
+                return 1;
+            }
             free(decompressed_data);
         }
         else
@@ -805,7 +853,13 @@ int extract_archive(const char *archive_name, const char *extract_dir)
 
                 r = fread(buffer, 1, chunk, archive_fp);
 
-                fwrite(buffer, 1, r, outfile);
+                if (fwrite(buffer, 1, r, outfile) != r)
+                {
+                    fprintf(stderr, "Error: could not write data for %s\n", out_path);
+                    fclose(outfile);
+                    fclose(archive_fp);
+                    return 1;
+                }
 
                 left -= r;
             }

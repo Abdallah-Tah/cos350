@@ -1,0 +1,72 @@
+ZARCHIVE(1)                      User Commands                     ZARCHIVE(1)
+
+NAME
+       zarchive - archive and extract files
+
+SYNOPSIS
+       zarchive c [archive.z]
+       zarchive cz [archive.z]
+       zarchive x archive.z [directory]
+
+DESCRIPTION
+       zarchive combines multiple files into a single archive file.
+       The archive can then be copied or moved and later extracted
+       to recreate the original files.
+
+       In create mode the program shows the list of files in the
+       current directory and asks the user which files should be
+       included in the archive.
+
+HOW IT WORKS
+       The archive file starts with a header that stores the user id,
+       the username of the archive owner, and the number of files.
+
+       Each archived file also has its own header containing:
+       - file size
+       - modification time
+       - file name
+       - options flag (bit 0 indicates compression)
+
+       The file data is stored directly after its header.
+
+       When using the 'cz' option, text files that contain only
+       7-bit ASCII characters may be compressed using the z827
+       compression method.
+
+EXAMPLES
+       Create an archive:
+              zarchive c myfiles.z
+
+       Create archive with compression:
+              zarchive cz myfiles.z
+
+       Extract files to a new directory:
+              zarchive x myfiles.z extracted
+
+       Extract files to the current directory:
+              zarchive x myfiles.z
+
+EXIT STATUS
+       0      Success
+       1      Error
+
+ERRORS
+       zarchive fails if:
+       - Archive already exists when creating
+       - Archive file does not exist when extracting
+       - Extraction directory already exists
+       - A file would be overwritten during extraction
+
+NOTES
+       It is safer to extract files into a new directory to avoid
+       overwriting existing files.
+
+       File modification times are preserved during extraction.
+
+AUTHOR
+       Written by Abdallah Mohamed for COS 350.
+
+SEE ALSO
+       tar(1), zip(1), z827(1)
+
+March 2026                       Version 1.0                     ZARCHIVE(1)

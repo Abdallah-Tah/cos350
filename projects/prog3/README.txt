@@ -1,3 +1,10 @@
+/*
+ * Author: Abdallah Mohamed
+ * Date:   March 13, 2026
+ * Program 3 - zarchive
+ *
+ */
+ 
 abdallah.mohamed@ant:~/projects/program03$ script result.txt
 Script started, output log file is 'result.txt'.
 bash: export: `:/usr/local/cuda-12.2/lib64': not a valid identifier
