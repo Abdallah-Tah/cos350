@@ -31,7 +31,7 @@ struct header
     unsigned int n_files;
 };
 
-struct file_entry
+struct file_info
 {
     size_t size;
     time_t timestamp;
@@ -231,7 +231,7 @@ unsigned char *z827_decompress(const unsigned char *input, size_t input_size, si
     return output;
 }
 
-// Get archive name from command line or input
+// Get archive name
 int get_archive_name(char *archive_name, size_t size, int argc, char *argv[])
 {
     if (argc >= 3)
@@ -274,7 +274,7 @@ void add_z_extension(char *name, size_t size)
         strcat(name, ".z");
 }
 
-// Get current user id and owner name
+// Get user id and owner name
 void get_user_name(unsigned int *uid, char *owner)
 {
     struct passwd *pw;
@@ -292,7 +292,7 @@ void get_user_name(unsigned int *uid, char *owner)
     owner[MAX_OWNER - 1] = '\0';
 }
 
-// File filter for scandir
+// Filter files for scandir
 int file_filter(const struct dirent *entry)
 {
     struct stat info;
@@ -459,12 +459,12 @@ int get_selected_files(char files[][MAX_NAME], int max_files, const char *skip_n
     return count;
 }
 
-/* add a file to the archive */
+// Add a file to the archive
 int add_one_file(FILE *archive_fp, const char *file_name, int use_compression)
 {
     FILE *infile;
     struct stat info;
-    struct file_entry entry;
+    struct file_info entry;
     unsigned char *file_data = NULL;
     unsigned char *compressed_data = NULL;
     size_t compressed_size = 0;
@@ -647,12 +647,12 @@ int create_archive(const char *archive_name, int use_compression)
     return 0;
 }
 
-/* display archive content list */
+// Show archive contents
 void show_archive_contents(const char *archive_name)
 {
     FILE *archive_fp;
     struct header archive_header;
-    struct file_entry entry;
+    struct file_info entry;
     char time_string[64];
     unsigned int i;
 
@@ -714,7 +714,7 @@ int extract_archive(const char *archive_name, const char *extract_dir)
     FILE *archive_fp;
     FILE *outfile;
     struct header archive_header;
-    struct file_entry entry;
+    struct file_info entry;
     struct utimbuf times;
     char out_path[512];
     char buffer[BUFFER_SIZE];
@@ -795,7 +795,7 @@ int extract_archive(const char *archive_name, const char *extract_dir)
             return 1;
         }
 
-        // Check if file is compressed
+        // Check for compression
         if (entry.options & 1)
         {
             unsigned char *compressed_data;
