@@ -1,0 +1,447 @@
+Abdallah Mohamed
+COS 350 
+Expirement 12
+
+ls -R did not run in an endless loop. It printed all directories and then stopped. The output is long and repeating 
+because I have real nested folders (like projects/program2/program2/...). 
+
+abdallah.mohamed@ant:~$ rm cos350_link words_link 
+abdallah.mohamed@ant:~$ rm result.txt 
+abdallah.mohamed@ant:~$ ls
+COS485  datasets  exp12  experiments  limits  limits.c  netstore1  projects  public_www  snap
+abdallah.mohamed@ant:~$ cd exp12/
+abdallah.mohamed@ant:~/exp12$ rm result.txt
+rm: cannot remove 'result.txt': No such file or directory
+abdallah.mohamed@ant:~/exp12$ script result.txt
+Script started, output log file is 'result.txt'.
+bash: export: `:/usr/local/cuda-12.2/lib64': not a valid identifier
+abdallah.mohamed@ant:~/exp12$ ln -s /usr/class/cos350 cos350_link
+abdallah.mohamed@ant:~/exp12$ ls -l
+total 0
+lrwxrwxrwx 1 abdallah.mohamed abdallah.mohamed 17 Mar  3 22:07 cos350_link -> /usr/class/cos350
+-rw-rw---- 1 abdallah.mohamed abdallah.mohamed  0 Mar  3 22:06 result.txt
+abdallah.mohamed@ant:~/exp12$ cd cos350_link
+abdallah.mohamed@ant:~/exp12/cos350_link$ ls -l
+total 12
+drwxrws---? 16 houser 6030 4096 Mar  6  2023 archive
+drwxrwx---?  4 houser 6030   80 Mar  8  2023 bin
+drwxr-sr-x   8 houser 6030   68 Feb  2  2017 exps
+drwxr-sr-x   2 houser 6030   25 Jan 29  2016 prog1
+drwxr-sr-x   2 houser 6030  167 Feb 18 14:42 prog2
+drwxr-sr-x   2 houser 6030    6 Mar  5  2011 prog3
+drwxr-sr-x   2 houser 6030   61 Apr  2  2025 prog4
+drwxr-sr-x   2 houser 6030   87 Apr  8  2022 prog5
+drwxr-sr-x   2 houser 6030  107 Apr 18  2012 prog6
+-rwxr-xr-x   1 houser 6030  754 Jan 20  2015 scriptCleaner
+drwxrws---?  3 houser 6030 4096 Jan 13 08:56 submit
+abdallah.mohamed@ant:~/exp12/cos350_link$ cd ..
+abdallah.mohamed@ant:~/exp12$ ln -s /usr/class/cos350/exps/l7/words words_link
+abdallah.mohamed@ant:~/exp12$ ls -l
+total 0
+lrwxrwxrwx 1 abdallah.mohamed abdallah.mohamed 17 Mar  3 22:07 cos350_link -> /usr/class/cos350
+-rw-rw---- 1 abdallah.mohamed abdallah.mohamed  0 Mar  3 22:06 result.txt
+lrwxrwxrwx 1 abdallah.mohamed abdallah.mohamed 31 Mar  3 22:07 words_link -> /usr/class/cos350/exps/l7/words
+abdallah.mohamed@ant:~/exp12$ cat words_link | head
+10th
+1st
+2nd
+3rd
+4th
+5th
+6th
+7th
+8th
+9th
+abdallah.mohamed@ant:~/exp12$ ln -s .. parent_link
+abdallah.mohamed@ant:~/exp12$ ls -l
+total 0
+lrwxrwxrwx 1 abdallah.mohamed abdallah.mohamed 17 Mar  3 22:07 cos350_link -> /usr/class/cos350
+lrwxrwxrwx 1 abdallah.mohamed abdallah.mohamed  2 Mar  3 22:09 parent_link -> ..
+-rw-rw---- 1 abdallah.mohamed abdallah.mohamed  0 Mar  3 22:06 result.txt
+lrwxrwxrwx 1 abdallah.mohamed abdallah.mohamed 31 Mar  3 22:07 words_link -> /usr/class/cos350/exps/l7/words
+abdallah.mohamed@ant:~/exp12$ cd parent_link
+abdallah.mohamed@ant:~/exp12/parent_link$ pwd
+/home/abdallah.mohamed/exp12/parent_link
+abdallah.mohamed@ant:~/exp12/parent_link$ ls -R
+.:
+COS485  datasets  exp12  experiments  limits  limits.c  netstore1  projects  public_www  snap
+
+./COS485:
+Prog2  prog3
+
+./COS485/Prog2:
+ bin   PeakFinderTester.jar  'prog02 - AbdallahMohamed.docx'   report.pdf   Scaffold.jar   src   test7.pdf
+
+./COS485/Prog2/bin:
+student
+
+./COS485/Prog2/bin/student:
+PeakFinder.class
+
+./COS485/Prog2/src:
+student
+
+./COS485/Prog2/src/student:
+PeakFinder.java
+
+./COS485/prog3:
+bin  PartyPlannerTester.jar  Scaffold.jar  src
+
+./COS485/prog3/bin:
+student
+
+./COS485/prog3/bin/student:
+PartyPlanner.class
+
+./COS485/prog3/src:
+student
+
+./COS485/prog3/src/student:
+PartyPlanner.java
+
+./exp12:
+cos350_link  parent_link  result.txt  words_link
+
+./experiments:
+e1  e11  e12  e3  e4  e5  e6  e7  e8  e9  ep07  ep08  exp11  exp12  parent  parent_link  typscript
+
+./experiments/e1:
+limits  limits.h  limits.h.gch
+
+./experiments/e11:
+filename
+
+./experiments/e12:
+cos350  parent  words
+
+./experiments/e2:
+a.out  e2.c
+
+./experiments/e3:
+a.out  array  array.c
+
+./experiments/e4:
+e21.c  e4  e4.c  file.txt  slowoutput  slowoutput.c  typescript
+
+./experiments/e5:
+a.out  debug  debug.c
+
+./experiments/e6:
+who1  who1.c
+
+./experiments/e7:
+typescript  words
+
+./experiments/e8:
+a.out  ep8  list.txt  qsort.c  typescript
+
+./experiments/e8/ep8:
+argsort  argsort.c  README.txt
+
+./experiments/e9:
+a.out  e9  e9.c  ep9  malloc  malloc.c
+
+./experiments/ep07:
+
+./experiments/ep08:
+
+./experiments/exp11:
+filename.txt  result.txt
+
+./experiments/exp12:
+cos350_link  parent_link  result.txt  words_link
+
+./projects:
+'orig files'   prog1   prog2   program2
+
+'./projects/orig files':
+shake.txt  short.txt
+
+./projects/prog1:
+myexpand  myexpand.c
+
+./projects/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+program2  RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2:
+RESULTS.txt  shake.orig  shake.txt  short.orig  short.txt  z827  z827.c
+
+./public_www:
+
+./snap:
+firmware-updater  snapd-desktop-integration
+
+./snap/firmware-updater:
+210  216  common  current
+
+./snap/firmware-updater/210:
+
+./snap/firmware-updater/216:
+
+./snap/firmware-updater/common:
+
+./snap/snapd-desktop-integration:
+315  common  current
+
+./snap/snapd-desktop-integration/315:
+
+./snap/snapd-desktop-integration/common:
+abdallah.mohamed@ant:~/exp12/parent_link$ cd exp
+exp12/       experiments/ 
+abdallah.mohamed@ant:~/exp12/parent_link$ cd exp12
+abdallah.mohamed@ant:~/exp12/parent_link/exp12$ ls
+cos350_link  parent_link  result.txt  words_link
+abdallah.mohamed@ant:~/exp12/parent_link/exp12$ exit
+exit
+Script done.
+abdallah.mohamed@ant:~/exp12$ nano result.txt 
+
+  GNU nano 7.2                                                                                                        result.txt                                                                                                                 
+^[[01;34mprogram2^[[0m  RESULTS.txt  ^[[00;90mshake.orig^[[0m  shake.txt  ^[[00;90mshort.orig^[[0m  short.txt  ^[[01;32mz827^[[0m  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/prog>
+^[[01;34mprogram2^[[0m  RESULTS.txt  ^[[00;90mshake.orig^[[0m  shake.txt  ^[[00;90mshort.orig^[[0m  short.txt  ^[[01;32mz827^[[0m  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/prog>
+^[[01;34mprogram2^[[0m  RESULTS.txt  ^[[00;90mshake.orig^[[0m  shake.txt  ^[[00;90mshort.orig^[[0m  short.txt  ^[[01;32mz827^[[0m  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/prog>
+^[[01;34mprogram2^[[0m  RESULTS.txt  ^[[00;90mshake.orig^[[0m  shake.txt  ^[[00;90mshort.orig^[[0m  short.txt  ^[[01;32mz827^[[0m  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/prog>
+^[[01;34mprogram2^[[0m  RESULTS.txt  ^[[00;90mshake.orig^[[0m  shake.txt  ^[[00;90mshort.orig^[[0m  short.txt  ^[[01;32mz827^[[0m  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/prog>
+^[[01;34mprogram2^[[0m  RESULTS.txt  ^[[00;90mshake.orig^[[0m  shake.txt  ^[[00;90mshort.orig^[[0m  short.txt  ^[[01;32mz827^[[0m  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/prog>
+^[[01;34mprogram2^[[0m  RESULTS.txt  ^[[00;90mshake.orig^[[0m  shake.txt  ^[[00;90mshort.orig^[[0m  short.txt  ^[[01;32mz827^[[0m  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/prog>
+^[[01;34mprogram2^[[0m  RESULTS.txt  ^[[00;90mshake.orig^[[0m  shake.txt  ^[[00;90mshort.orig^[[0m  short.txt  ^[[01;32mz827^[[0m  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/prog>
+^[[01;34mprogram2^[[0m  RESULTS.txt  ^[[00;90mshake.orig^[[0m  shake.txt  ^[[00;90mshort.orig^[[0m  short.txt  ^[[01;32mz827^[[0m  z827.c
+
+./projects/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/program2/prog>
+RESULTS.txt  ^[[00;90mshake.orig^[[0m  shake.txt  ^[[00;90mshort.orig^[[0m  short.txt  ^[[01;32mz827^[[0m  z827.c
+
+./public_www:
+
+./snap:
+^[[01;34mfirmware-updater^[[0m  ^[[01;34msnapd-desktop-integration^[[0m
+
+./snap/firmware-updater:
+^[[01;34m210^[[0m  ^[[01;34m216^[[0m  ^[[01;34mcommon^[[0m  ^[[01;36mcurrent^[[0m
+
+./snap/firmware-updater/210:
+
+./snap/firmware-updater/216:
+
+./snap/firmware-updater/common:
+
+./snap/snapd-desktop-integration:
+^[[01;34m315^[[0m  ^[[01;34mcommon^[[0m  ^[[01;36mcurrent^[[0m
+
+./snap/snapd-desktop-integration/315:
+
+./snap/snapd-desktop-integration/common:
+^[[?2004h^[]0;abdallah.mohamed@ant: ~/exp12/parent_link^G^[[01;32mabdallah.mohamed@ant^[[00m:^[[01;34m~/exp12/parent_link^[[00m$ e^H^[[Kcd exp^G
+exp12/       experiments/
+^[]0;abdallah.mohamed@ant: ~/exp12/parent_link^G^[[01;32mabdallah.mohamed@ant^[[00m:^[[01;34m~/exp12/parent_link^[[00m$ cd exp12
+^[[?2004l^M^[[?2004h^[]0;abdallah.mohamed@ant: ~/exp12/parent_link/exp12^G^[[01;32mabdallah.mohamed@ant^[[00m:^[[01;34m~/exp12/parent_link/exp12^[[00m$ ls
+^[[?2004l^M^[[0m^[[01;36mcos350_link^[[0m  ^[[01;36mparent_link^[[0m  result.txt  ^[[01;36mwords_link^[[0m
+^[[?2004h^[]0;abdallah.mohamed@ant: ~/exp12/parent_link/exp12^G^[[01;32mabdallah.mohamed@ant^[[00m:^[[01;34m~/exp12/parent_link/exp12^[[00m$ exit
+^[[?2004l^Mexit
+
+Script done on 2026-03-03 22:10:53-05:00 [COMMAND_EXIT_CODE="0"]
+
