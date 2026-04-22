@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Name: Abdallah Mohamed
+# Course: COS 350
+# Experiment 21 - watch
+# Date: April 21, 2026
+
+while true
+do
+    clear
+    $@
+    sleep 2
+done

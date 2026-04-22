@@ -1,0 +1,7 @@
+Experiment 13 - password
+
+Hide Assignment Information
+Instructions
+Write a small C program to implement hidden password entry. Prompt the user to enter a password, and then as they enter the password show asterisks as they type each character. When they are done show the password they typed. You can start from the password1.c program from class found in: /usr/class/cos350/exps/l13
+
+Explain what terminal setting suppressed echoing of the password characters and what terminal setting allowed an immediate response as each character was typed.

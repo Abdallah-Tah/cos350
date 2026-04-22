@@ -1,0 +1,5 @@
+One command I used that was not covered in class is scp. I used it to copy files from my Raspberry Pi to my computer. 
+It transfers files between machines over SSH.
+
+I also used the systemctl command to manage services on my Raspberry Pi. For example, I used it to start and stop background 
+services like the OpenClaw gateway. This helped me control programs that run in the background.
